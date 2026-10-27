@@ -2,7 +2,7 @@
 
 The following are suggestions on how to approach image analysis with PlantCV. 
 
-###**Image Processing Goals**
+### **Image Processing Goals**
 
 When starting an image-based phenotyping project it is important to consider what the end goals of the project are.
 This is important because the goals of the project will determine the camera type, imaging layout, and will help to 
@@ -13,7 +13,7 @@ might want to take side-view and top-view images of a single plant with a near-i
 project is to classify disease symptoms on leaves then you may want to use a scanner to take detailed images of leaf 
 tissue. 
 
-###**Image Layout Considerations**
+### **Image Layout Considerations**
 
 It is a good idea to capture a test image and process it using PlantCV (or any other software that you might use) 
 before capturing a full set of data. It is ALWAYS best to try to reduce potential image processing problems up front, 
@@ -27,7 +27,7 @@ increase contrast (blue material for example).
 *  If you are going to image more than one plant in an image, how long before the plants overlap each other? Is this 
 long enough for the trait you are interested in?
 
-###**Developing Image Processing Workflows (Workflow Development)**
+### **Developing Image Processing Workflows (Workflow Development)**
 
 There are two major steps to developing an image analysis workflow:
 
@@ -41,7 +41,7 @@ the dataset to determine how robust the workflow will be. Example workflows and 
 to demonstrate how modules can be used. Keep in mind that modules can be linked together in a variety of different 
 configurations to meet image processing goals so the tutorials simply examples of a few approaches. Our tutorial gallery is located [here](https://plantcv.org/tutorials).
 
-####**1. Methods of Isolating Target Objects**
+#### **1. Methods of Isolating Target Objects**
 
 Regardless of the objective of the experiment, it will likely be necessary to segment features of interest in 
 the image (likely the plant material in the image). Isolating the target object or objects can be approached a number 
@@ -56,7 +56,7 @@ color card with [color correction](https://plantcv.org/tutorials/color-correctio
 of the analysis objectives. See the [detect color card documentation](transform_detect_color_card.md) for more detail.
 * Supported color cards can also be used to automatically size scale measurements (from pixels to millimeters and millimeters<sup>2</sup>) recorded by PlantCV. 
 
-#####Object Segmentation Approaches
+##### Object Segmentation Approaches
 
 *  Thresholding method (auto or manual) - A single channel of an image is selected for either 
 [binary thresholding](binary_threshold.md) or auto thresholding ([Gaussian](gaussian_threshold.md), 
@@ -79,19 +79,19 @@ training set is built, the trained classifier is used to segment the features of
 [naive Bayes tutorial](https://plantcv.org/tutorials/naive-bayes) and the [naive Bayes function](naive_bayes.md) for more
 information. There still may need to be noise reduction steps following machine learning-based segmentation.
 
-#####Noise Reduction 
+##### Noise Reduction 
 
 *  After a thresholding, background subtraction, or a machine learning approach for object segmentation, there will 
 likely be some 'noise' (non-target-object spots) in the image. Those can be filled in using modules like [fill](fill.md) or blur
 ([median blur](median_blur.md) or [Gaussian blur](gaussian_blur.md)). 
 
-#####Region of Interest
+##### Region of Interest
 
 *  To further isolate an object from surrounding background a region of interest can be used to select the region of 
 the image that contains the target object. To do this you first define the [region of interest](roi_rectangle.md), then filter 
 the objects that are  within, touching, or outside of the region of interest with the [`roi.filter` function](roi_filter.md).
 
-#####Connecting Objects or Splitting Objects
+##### Connecting Objects or Splitting Objects
 
 *  Once the target object or objects are segmented you then need to decide if it is desirable to connect or split the 
 objects.
@@ -99,7 +99,7 @@ objects.
 each plant for example) then there are functions in PlantCV to split the image apart so there is a single target object 
 in each sub-image. For more information on this process see the [Multi Plant Tutorial](https://plantcv.org/tutorials/arabidopsis-tray). 
 
-####**2. Object Analysis in PlantCV**
+#### **2. Object Analysis in PlantCV**
     
 These are the general categories of object analysis that are available in PlantCV  
 
